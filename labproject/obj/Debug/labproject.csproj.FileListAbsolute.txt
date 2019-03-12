@@ -1,0 +1,24 @@
+c:\users\hp\documents\visual studio 2015\Projects\labproject\labproject\bin\Debug\labproject.exe.config
+c:\users\hp\documents\visual studio 2015\Projects\labproject\labproject\bin\Debug\labproject.exe
+c:\users\hp\documents\visual studio 2015\Projects\labproject\labproject\bin\Debug\labproject.pdb
+c:\users\hp\documents\visual studio 2015\Projects\labproject\labproject\obj\Debug\labproject.csprojResolveAssemblyReference.cache
+c:\users\hp\documents\visual studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Form1.resources
+c:\users\hp\documents\visual studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Properties.Resources.resources
+c:\users\hp\documents\visual studio 2015\Projects\labproject\labproject\obj\Debug\labproject.csproj.GenerateResource.Cache
+c:\users\hp\documents\visual studio 2015\Projects\labproject\labproject\obj\Debug\labproject.exe
+c:\users\hp\documents\visual studio 2015\Projects\labproject\labproject\obj\Debug\labproject.pdb
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\bin\Debug\labproject.exe.config
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.exe
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.pdb
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\bin\Debug\labproject.exe
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\bin\Debug\labproject.pdb
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.csprojResolveAssemblyReference.cache
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Properties.Resources.resources
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.csproj.GenerateResource.Cache
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.student_form.resources
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Form1.resources
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.CLO.resources
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Add_rubrics.resources
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Add_levelcs.resources
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Level_display.resources
+E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Attendance.resources
