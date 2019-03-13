@@ -22,3 +22,19 @@ E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Deb
 E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Add_levelcs.resources
 E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Level_display.resources
 E:\6th smester\DBMSLab\Visual Studio 2015\Projects\labproject\labproject\obj\Debug\labproject.Attendance.resources
+C:\Users\hp\Desktop\Miniproject\labproject\bin\Debug\labproject.exe.config
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.exe
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.pdb
+C:\Users\hp\Desktop\Miniproject\labproject\bin\Debug\labproject.exe
+C:\Users\hp\Desktop\Miniproject\labproject\bin\Debug\labproject.pdb
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.csprojResolveAssemblyReference.cache
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Add_levelcs.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Add_rubrics.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Attendance.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.CLO.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Level_display.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Form1.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.student_form.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Properties.Resources.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.csproj.GenerateResource.Cache
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Add_clo.resources

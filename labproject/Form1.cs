@@ -27,7 +27,7 @@ namespace labproject
 
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            CLO obj = new CLO();
+            Add_clo obj = new Add_clo();
             this.Hide();
             obj.Show();
         }
