@@ -20,22 +20,44 @@ namespace labproject
         public string constr = "Data Source = DESKTOP-G0K5DQK; Initial Catalog = ProjectB; Integrated Security = True;MultipleActiveResultSets=true;";
         private void button1_Click(object sender, EventArgs e)
         {
-            SqlConnection con = new SqlConnection(constr);
-            con.Open();
-            DateTime? d = null;
-            DateTime nowdate = DateTime.Now;
-            if (con.State == ConnectionState.Open)
+            if (textBox1.Text == "")
             {
-                string query = "INSERT INTO  Clo (Name,DateCreated,DateUpdated)VALUES ('" + textBox1.Text + "','" + nowdate + "','" + d + "')";
-                SqlCommand cmd = new SqlCommand(query, con);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Successful");
-             
-            }
 
+            }
             else
             {
-                MessageBox.Show("erro");
+                SqlConnection con = new SqlConnection(constr);
+                con.Open();
+                string check = "Select * from Clo where Name='" + textBox1.Text + "' ";
+                SqlCommand comcheck = new SqlCommand(check, con);
+                SqlDataAdapter adapt = new SqlDataAdapter();
+                adapt.SelectCommand = new SqlCommand(check, con);
+                DataTable ds = new DataTable();
+                adapt.Fill(ds);
+                int i = ds.Rows.Count;
+                if (i > 0)
+                {
+                    MessageBox.Show("Clo with this name Already Exists");
+                    ds.Clear();
+                }
+                else
+                {
+                    DateTime? d = null;
+                    DateTime nowdate = DateTime.Now;
+                    if (con.State == ConnectionState.Open)
+                    {
+                        string query = "INSERT INTO  Clo (Name,DateCreated,DateUpdated)VALUES ('" + textBox1.Text + "','" + nowdate + "','" + d + "')";
+                        SqlCommand cmd = new SqlCommand(query, con);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Successfully Inserted");
+
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Erro occure while inserting");
+                    }
+                }
             }
         }
 

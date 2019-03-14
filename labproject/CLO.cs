@@ -20,37 +20,44 @@ namespace labproject
         public static string publicCloId;
         public string globalid;
         public string constr = "Data Source = DESKTOP-G0K5DQK; Initial Catalog = ProjectB; Integrated Security = True;MultipleActiveResultSets=true;";
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)//edit 
         {
-            try
+            if (textBox1.Text == "")
             {
-                SqlConnection conn = new SqlConnection(constr);
-                //Open the connection to db
-                conn.Open();
-                DateTime nowdate = DateTime.Now;
-                string query = "UPDATE Clo set Name='" + textBox1.Text + "' ,DateUpdated='" +nowdate+ "' where Id='" + globalid+"'";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                //  SqlDataAdapter adapter = new SqlDataAdapter();
-                //  adapter.SelectCommand = new SqlCommand(query, conn);
-                SqlDataReader reader = cmd.ExecuteReader();
-                MessageBox.Show("Updated");
-             
-                while(reader.Read())
+                MessageBox.Show("Select data to Edit");
+            }
+            else
+            {
+                try
                 {
+                    SqlConnection conn = new SqlConnection(constr);
+                    //Open the connection to db
+                    conn.Open();
+                    DateTime nowdate = DateTime.Now;
+                    string query = "UPDATE Clo set Name='" + textBox1.Text + "' ,DateUpdated='" + nowdate + "' where Id='" + globalid + "'";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    MessageBox.Show("Successfully Updated");
+
+                    while (reader.Read())
+                    {
+
+                    }
+                    show();
 
                 }
-                show();
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
             }
         }
+    
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Level_display obj = new Level_display();
+            Add_display_levelcs obj = new Add_display_levelcs();
             this.Hide();
             obj.Show();
         }
@@ -111,37 +118,33 @@ namespace labproject
             dataGridView1.Columns[3].Visible = false;
             dataGridView1.Columns["Edit"].DisplayIndex = 6;
             dataGridView1.Columns["Delete"].DisplayIndex = 6;
-            /*  DataGridViewComboBoxColumn col1 = new DataGridViewComboBoxColumn();
-              col1.HeaderText = "Edit";
-              col1.ToolTipText = "Edit";
-              col1.Name = "Edit";
-
-              dataGridView1.Columns[4].add;
-              dataGridView1.Columns[1].Visible = false;*/
+        
 
 
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
-            /* if (e.RowIndex != -1)
-           {
-               DataGridViewRow rows = dataGridView1.Rows[e.RowIndex];
-               publicCloId = rows.Cells[2].Value.ToString();
-               Add_rubrics form_rublevel = new Add_rubrics();
-               form_rublevel.Show();
-
-           }*/
+          
             if (e.ColumnIndex == 0)//rubrics
             {
                 if (e.RowIndex != -1)
                 {
                     DataGridViewRow rows = dataGridView1.Rows[e.RowIndex];
                     publicCloId = rows.Cells[3].Value.ToString();//column3 is containing id
-                    Add_rubrics form_rublevel = new Add_rubrics();
-                    form_rublevel.Show();
+                    if (publicCloId == "")
+                    {
+                        MessageBox.Show("First enter Clo");
+                    }
+                    else
+                    {
+                        Add_display_rubrics form_rub = new Add_display_rubrics();
+                        this.Hide();
+                        form_rub.Show();
+                    }
                 }
-            }
+            }//end of rubric
+
             else if (e.ColumnIndex == 1)//edit
             {
                 if (e.RowIndex != -1)
@@ -150,7 +153,8 @@ namespace labproject
                    globalid = rows.Cells[3].Value.ToString();
                   textBox1.Text= rows.Cells[4].Value.ToString();
                 }
-            }
+            }//end of edit
+
             else if (e.ColumnIndex == 2)// delete
             {
                 if (e.RowIndex != -1)
@@ -163,9 +167,6 @@ namespace labproject
                         SqlConnection conn = new SqlConnection(constr);
                         //Open the connection to db
                         conn.Open();
-
-                        //  string q="DELETE * FROM Clo inner JOIN Rubric ON Clo.Id = Rubric.CloId LEFT JOIN RubricLevel ON Rubric.Id=RbricLevel.RubricId WHERE Clo.Id = '" + globalid+ " '";
-                        //   string q ="DELETE FROM Clo, Rubric , RubricLevel USING Clo, Rubric , RubricLevel WHERE Clo.Id=Rubric.CloId and Rubric.Id=RubricLevel.RubricId and Clo.Id = '" + globalid + " '";
                         string q1 = "Select count(Id) from Rubric where CloId='" + globalid + "' GROUP BY CloId having count(Id)>1";
                         SqlCommand cmd1 = new SqlCommand(q1, conn);//no of same id
                         int jj = Convert.ToInt32(cmd1.ExecuteScalar());
@@ -212,6 +213,13 @@ namespace labproject
                 MessageBox.Show("Click rightly box");
             }
 
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Add_clo obj = new Add_clo();
+            this.Hide();
+            obj.Show();
         }
     }
     

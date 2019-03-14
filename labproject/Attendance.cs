@@ -92,7 +92,7 @@ namespace labproject
 
             SqlDataReader reader = command.ExecuteReader();
             int mm = dataGridView1.Rows.Count;
-            for (int i = 1; i < dataGridView1.Rows.Count; i++)
+            for (int i = 1; i < dataGridView1.RowCount; i++)
             {
                 while (reader.Read())
                 {
