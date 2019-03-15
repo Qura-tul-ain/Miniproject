@@ -30,7 +30,8 @@ namespace labproject
 
             SqlDataAdapter adapter = new SqlDataAdapter();
             //Generating the query to fetch the contact details
-            query = "SELECT * FROM Student";
+            //show students For present only those are active
+            query = "SELECT * FROM Student where Student.Status='"+ 5+"'";
 
             SqlCommand = new SqlCommand(query, conn);
             adapter.SelectCommand = new SqlCommand(query, conn);
@@ -49,13 +50,13 @@ namespace labproject
             col1.Items.Add("Late");
             dataGridView1.Columns.Add(col1);
 
-             dataGridView1.Columns[0].Visible = false;
-             dataGridView1.Columns[1].Visible = false;
-             dataGridView1.Columns[2].Visible = false;
-             dataGridView1.Columns[3].Visible = false;
-             dataGridView1.Columns[4].Visible = false;
+             dataGridView1.Columns[0].Visible = false;//student Id
+          //   dataGridView1.Columns[1].Visible = false;
+             dataGridView1.Columns[2].Visible = false;//student last name
+             dataGridView1.Columns[3].Visible = false;//student contact
+             dataGridView1.Columns[4].Visible = false;//student email
            
-             dataGridView1.Columns[6].Visible = false;
+             dataGridView1.Columns[6].Visible = false;//student status
 
         }
 
@@ -77,22 +78,23 @@ namespace labproject
             SqlConnection conn = new SqlConnection(constr);
             //Open the connection to db
             conn.Open();
-
+            //add attendance date to ClassAttendance
             string query = "insert into ClassAttendance(AttendanceDate) Values('" + dateTimePicker1.Value.Date + "')";
             SqlCommand cmmd = new SqlCommand(query, conn);
             cmmd.ExecuteNonQuery();
-
+            // get recently added id of  ClassAttendance ,which we need in StudentAttendance
             string q1 = "SELECT IDENT_CURRENT('ClassAttendance')";
             SqlCommand q = new SqlCommand(q1, conn);
             int id = Convert.ToInt32(q.ExecuteScalar());
             int columnValue;
             string m;
+            //Status is int,we take input in string and then check in lookup table to get int value acrrosponding to string value.
             String cmds = "SELECT * FROM Lookup";
             SqlCommand command = new SqlCommand(cmds, conn);
 
             SqlDataReader reader = command.ExecuteReader();
             int mm = dataGridView1.Rows.Count;
-            for (int i = 1; i < dataGridView1.RowCount; i++)
+            for (int i = 0; i < dataGridView1.RowCount; i++)
             {
                 while (reader.Read())
                 {
@@ -101,17 +103,37 @@ namespace labproject
                         m = reader[1].ToString();
                         columnValue = Convert.ToInt32(reader[0]);
                         string sql = "INSERT INTO StudentAttendance(AttendanceId,StudentId,AttendanceStatus) VALUES ('" + id + "','"
-                      + dataGridView1.Rows[i].Cells[0].Value + "', '"
-                     + columnValue + "' )";
+                      + dataGridView1.Rows[i].Cells[0].Value + "', '" + columnValue + "' )";
 
                         SqlCommand cmd = new SqlCommand(sql, conn);
                         cmd.ExecuteNonQuery();
-                        continue;
-                       // MessageBox.Show("successful");
+                       
+                       MessageBox.Show("successful");
                     }
                 }
                
             }
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Add_clo obj = new Add_clo();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            show_attendance obj = new show_attendance();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Show_student obj = new Show_student();
+            this.Hide();
+            obj.Show();
         }
     }
 }

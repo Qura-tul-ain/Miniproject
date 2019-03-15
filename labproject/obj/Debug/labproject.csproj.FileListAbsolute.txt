@@ -38,3 +38,5 @@ C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Show_student.res
 C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Add_display_rubrics.resources
 C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Add_display_levelcs.resources
 C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.start.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.show_attendance.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Clo_rubric_level.resources

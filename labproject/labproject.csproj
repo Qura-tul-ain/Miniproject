@@ -76,6 +76,18 @@
     <Compile Include="CLO.Designer.cs">
       <DependentUpon>CLO.cs</DependentUpon>
     </Compile>
+    <Compile Include="Clo_rubric_level.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Clo_rubric_level.Designer.cs">
+      <DependentUpon>Clo_rubric_level.cs</DependentUpon>
+    </Compile>
+    <Compile Include="show_attendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="show_attendance.Designer.cs">
+      <DependentUpon>show_attendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="start.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -110,6 +122,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="CLO.resx">
       <DependentUpon>CLO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Clo_rubric_level.resx">
+      <DependentUpon>Clo_rubric_level.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="show_attendance.resx">
+      <DependentUpon>show_attendance.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="start.resx">
       <DependentUpon>start.cs</DependentUpon>

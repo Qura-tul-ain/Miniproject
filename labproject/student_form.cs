@@ -41,7 +41,7 @@ namespace labproject
                 }
                
 
-                else if (txt[3].ToString() != "-" || txt[6].ToString() != "-" || txt.Length > 9 || txt[3].ToString()=="" || txt[6].ToString() == "" || txt.Length < 8)
+                else if (txt[4].ToString() != "-" || txt[7].ToString() != "-" || txt.Length > 11 || txt[3].ToString()=="" || txt[6].ToString() == "" || txt.Length < 9)
                 {
                     MessageBox.Show("Enter Registration no in correct format,Correct format is 2016-cs-258");
                 }
@@ -86,6 +86,12 @@ namespace labproject
                                     SqlCommand cmd = new SqlCommand(query, con);
                                     cmd.ExecuteNonQuery();
                                     MessageBox.Show("Successfully Inserted");
+                                    textBox1.Text = "";
+                                    textBox2.Text = "";
+                                    textBox3.Text = "";
+                                    textBox4.Text = "";
+                                    textBox5.Text = "";
+                                    comboBox1.Text ="";
                                 }
                             }
                         }
@@ -179,6 +185,13 @@ namespace labproject
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             CLO obj = new CLO();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            start obj = new start();
             this.Hide();
             obj.Show();
         }
