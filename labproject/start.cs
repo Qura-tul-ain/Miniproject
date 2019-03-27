@@ -76,7 +76,14 @@ namespace labproject
 
         private void linkLabel9_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Student_result obj = new Student_result();
+            Student_assessment obj = new Student_assessment();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel10_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            show_result obj = new show_result();
             this.Hide();
             obj.Show();
         }

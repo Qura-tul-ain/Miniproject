@@ -38,6 +38,7 @@
             this.linkLabel7 = new System.Windows.Forms.LinkLabel();
             this.linkLabel8 = new System.Windows.Forms.LinkLabel();
             this.linkLabel9 = new System.Windows.Forms.LinkLabel();
+            this.linkLabel10 = new System.Windows.Forms.LinkLabel();
             this.SuspendLayout();
             // 
             // LMS
@@ -138,7 +139,7 @@
             // 
             this.linkLabel8.AutoSize = true;
             this.linkLabel8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel8.Location = new System.Drawing.Point(456, 328);
+            this.linkLabel8.Location = new System.Drawing.Point(456, 317);
             this.linkLabel8.Name = "linkLabel8";
             this.linkLabel8.Size = new System.Drawing.Size(247, 25);
             this.linkLabel8.TabIndex = 8;
@@ -150,19 +151,32 @@
             // 
             this.linkLabel9.AutoSize = true;
             this.linkLabel9.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel9.Location = new System.Drawing.Point(485, 381);
+            this.linkLabel9.Location = new System.Drawing.Point(481, 366);
             this.linkLabel9.Name = "linkLabel9";
-            this.linkLabel9.Size = new System.Drawing.Size(153, 25);
+            this.linkLabel9.Size = new System.Drawing.Size(184, 25);
             this.linkLabel9.TabIndex = 9;
             this.linkLabel9.TabStop = true;
-            this.linkLabel9.Text = "Student Result";
+            this.linkLabel9.Text = "Mark Assessment";
             this.linkLabel9.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel9_LinkClicked);
+            // 
+            // linkLabel10
+            // 
+            this.linkLabel10.AutoSize = true;
+            this.linkLabel10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.linkLabel10.Location = new System.Drawing.Point(481, 419);
+            this.linkLabel10.Name = "linkLabel10";
+            this.linkLabel10.Size = new System.Drawing.Size(172, 25);
+            this.linkLabel10.TabIndex = 10;
+            this.linkLabel10.TabStop = true;
+            this.linkLabel10.Text = "Result CLO wise";
+            this.linkLabel10.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel10_LinkClicked);
             // 
             // start
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1062, 670);
+            this.Controls.Add(this.linkLabel10);
             this.Controls.Add(this.linkLabel9);
             this.Controls.Add(this.linkLabel8);
             this.Controls.Add(this.linkLabel7);
@@ -192,5 +206,6 @@
         private System.Windows.Forms.LinkLabel linkLabel7;
         private System.Windows.Forms.LinkLabel linkLabel8;
         private System.Windows.Forms.LinkLabel linkLabel9;
+        private System.Windows.Forms.LinkLabel linkLabel10;
     }
 }

@@ -104,7 +104,7 @@ namespace labproject
 
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Student_result obj = new Student_result();
+            Student_assessment obj = new Student_assessment();
             this.Hide();
             obj.Show();
 

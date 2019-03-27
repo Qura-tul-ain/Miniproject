@@ -137,10 +137,20 @@ namespace labproject
                     DataGridViewRow rows = dataGridView1.Rows[e.RowIndex];
                     string comp_id = rows.Cells[6].Value.ToString();//column6 is containing id
                     int C_id = Convert.ToInt32(comp_id);
-                    string delete_level = "DELETE from AssessmentComponent WHERE Id ='" + C_id + "'";
-                    SqlCommand cmd = new SqlCommand(delete_level, conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    MessageBox.Show("Successfully deleted");
+                
+                    for (int i = 0; i < 3; i++)
+                    {
+                      
+                        string delete_result = "DELETE StudentResult WHERE EXISTS ( SELECT * FROM AssessmentComponent WHERE AssessmentComponent.Id= Studentresult.AssessmentComponentId and AssessmentComponent.Id ='" + C_id + "')";
+                        SqlCommand cmd3 = new SqlCommand(delete_result, conn);
+                        SqlDataReader reader3 = cmd3.ExecuteReader();
+                    }
+
+
+                    string delete_comp = "DELETE from AssessmentComponent WHERE AssessmentComponent.Id ='" + C_id + "'";
+                    SqlCommand cmd2 = new SqlCommand(delete_comp, conn);
+                    SqlDataReader reader2 = cmd2.ExecuteReader();
+                    MessageBox.Show("Deleted Successfully");
                     show();
 
                 }

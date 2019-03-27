@@ -97,25 +97,40 @@ namespace labproject
                    
                     DataGridViewRow rows = dataGridView1.Rows[e.RowIndex];
                     assessment_id = Convert.ToInt32(rows.Cells[3].Value);//column3 is containing id
-                    for (int i = 0; i < dataGridView1.RowCount; i++)
-                    {
 
-                        string delete_component = "DELETE  StudentResult ( SELECT * FROM Assessment WHERE Assessment.Id= AssessmentComponent.AssessmentId and Assessment.Id ='" + assessment_id + "')";
-                        SqlCommand cmd1 = new SqlCommand(delete_component, conn);
-                        SqlDataReader reader1 = cmd1.ExecuteReader();
+                 
+                    string q1 = "Select count(Id) from AssessmentComponent where AssessmentId='" + assessment_id + "' GROUP BY AssessmentId having count(Id)>=1";
+                    SqlCommand cmd1 = new SqlCommand(q1, conn);//no of same id
+                    int jj = Convert.ToInt32(cmd1.ExecuteScalar());
+                    string q2 = "Select * from AssessmentComponent where AssessmentId='" + assessment_id + "' ";
+                    SqlCommand cmd11 = new SqlCommand(q2, conn);//id of first comp having sme assessment_id
+                    int ii = Convert.ToInt32(cmd11.ExecuteScalar());
+                    int k;
+                    for (int j = 0; j < jj; j++)
+                    {
+                        k = j + ii;
+                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                        {
+
+                            string delete_result = "DELETE  StudentResult WHERE EXISTS( SELECT * FROM AssessmentComponent WHERE AssessmentComponent.Id=StudentResult.AssessmentComponentId and AssessmentComponent.Id ='" + k + "')";
+                            SqlCommand cmd = new SqlCommand(delete_result, conn);
+                            SqlDataReader reader1 = cmd.ExecuteReader();
+                        }
                     }
 
-                    for (int i = 0; i < dataGridView1.RowCount; i++)
+                    
+
+                    for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
                         
                         string delete_component = "DELETE AssessmentComponent WHERE EXISTS ( SELECT * FROM Assessment WHERE Assessment.Id= AssessmentComponent.AssessmentId and Assessment.Id ='" + assessment_id + "')";
-                        SqlCommand cmd1 = new SqlCommand(delete_component, conn);
-                        SqlDataReader reader1 = cmd1.ExecuteReader();
+                        SqlCommand cmd3 = new SqlCommand(delete_component, conn);
+                        SqlDataReader reader2 = cmd3.ExecuteReader();
                     }
              
                     string delete = "DELETE from Assessment WHERE Id ='" + assessment_id + "'";
-                    SqlCommand cmd = new SqlCommand(delete, conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
+                    SqlCommand cmd2 = new SqlCommand(delete, conn);
+                    SqlDataReader reader = cmd2.ExecuteReader();
                     MessageBox.Show("Successfully deleted");
                     show();
 

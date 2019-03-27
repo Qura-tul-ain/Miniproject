@@ -100,6 +100,12 @@
     <Compile Include="show_attendance.Designer.cs">
       <DependentUpon>show_attendance.cs</DependentUpon>
     </Compile>
+    <Compile Include="show_result.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="show_result.Designer.cs">
+      <DependentUpon>show_result.cs</DependentUpon>
+    </Compile>
     <Compile Include="start.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -120,11 +126,11 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Student_result.cs">
+    <Compile Include="Student_assessment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Student_result.Designer.cs">
-      <DependentUpon>Student_result.cs</DependentUpon>
+    <Compile Include="Student_assessment.Designer.cs">
+      <DependentUpon>Student_assessment.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="Add_clo.resx">
       <DependentUpon>Add_clo.cs</DependentUpon>
@@ -153,6 +159,9 @@
     <EmbeddedResource Include="show_attendance.resx">
       <DependentUpon>show_attendance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="show_result.resx">
+      <DependentUpon>show_result.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="start.resx">
       <DependentUpon>start.cs</DependentUpon>
     </EmbeddedResource>
@@ -171,8 +180,8 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Student_result.resx">
-      <DependentUpon>Student_result.cs</DependentUpon>
+    <EmbeddedResource Include="Student_assessment.resx">
+      <DependentUpon>Student_assessment.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
