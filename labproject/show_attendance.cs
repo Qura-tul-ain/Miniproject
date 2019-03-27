@@ -108,5 +108,10 @@ namespace labproject
             this.Hide();
             obj.Show();
         }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

@@ -64,6 +64,18 @@
     <Compile Include="Add_display_rubrics.Designer.cs">
       <DependentUpon>Add_display_rubrics.cs</DependentUpon>
     </Compile>
+    <Compile Include="Assessment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assessment.Designer.cs">
+      <DependentUpon>Assessment.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Assess_component.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assess_component.Designer.cs">
+      <DependentUpon>Assess_component.cs</DependentUpon>
+    </Compile>
     <Compile Include="Attendance.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +120,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Student_result.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Student_result.Designer.cs">
+      <DependentUpon>Student_result.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Add_clo.resx">
       <DependentUpon>Add_clo.cs</DependentUpon>
     </EmbeddedResource>
@@ -116,6 +134,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Add_display_rubrics.resx">
       <DependentUpon>Add_display_rubrics.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assessment.resx">
+      <DependentUpon>Assessment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assess_component.resx">
+      <DependentUpon>Assess_component.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Attendance.resx">
       <DependentUpon>Attendance.cs</DependentUpon>
@@ -147,6 +171,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Student_result.resx">
+      <DependentUpon>Student_result.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -240,5 +240,12 @@ namespace labproject
             this.Hide();
             obj.Show();
         }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Student_result obj = new Student_result();
+            this.Hide();
+            obj.Show();
+        }
     }
 }

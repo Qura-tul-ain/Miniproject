@@ -188,16 +188,28 @@ namespace labproject
                 SqlConnection conn = new SqlConnection(constr);
                 conn.Open();//open connection
                 DataGridViewRow rows = dataGridView1.Rows[e.RowIndex];
-                rubric_id = rows.Cells[5].Value.ToString();
-            
-                for (int i = 0; i < dataGridView1.RowCount; i++)
+               rubric_id = rows.Cells[5].Value.ToString();
+              string rub= rows.Cells[5].Value.ToString();
+                int cur = Int32.Parse(rub);
+                string list = string.Format("SELECT * FROM RubricLevel WHERE Rubric.Id ='" + rubric_id + "',cur");
+                
+
+                for (int i = 0; i < 3; i++)
                 {
                     // RubricId=rubric which user wants to delete.
                     //delete rubriclevel where Rubric.Id equals to RubricLevel.rubricId 
                     string delete_rubric_level = "DELETE RubricLevel WHERE EXISTS ( SELECT * FROM Rubric WHERE Rubric.Id= RubricLevel.RubricId and Rubric.Id ='" + rubric_id + "')";
-                    SqlCommand cmd1 = new SqlCommand(delete_rubric_level, conn);
-                    SqlDataReader reader1 = cmd1.ExecuteReader();
+                    SqlCommand cmd3 = new SqlCommand(delete_rubric_level, conn);
+                    SqlDataReader reader3 = cmd3.ExecuteReader();
                 }
+                for (int i = 0; i < 3 ; i++)
+                {
+                  
+                    string delete_comp = "DELETE AssessmentComponent WHERE EXISTS ( SELECT * FROM Rubric WHERE Rubric.Id= AssessmentComponent.RubricId and Rubric.Id ='" + rubric_id + "')";
+                    SqlCommand cmd4 = new SqlCommand(delete_comp, conn);
+                    SqlDataReader reader4 = cmd4.ExecuteReader();
+                }
+
                 string delete_rub = "DELETE from Rubric WHERE Rubric.Id ='" + rubric_id + "'";
                 SqlCommand cmd2 = new SqlCommand(delete_rub, conn);
                 SqlDataReader reader2 = cmd2.ExecuteReader();
@@ -274,6 +286,13 @@ namespace labproject
         private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Attendance obj = new Attendance();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Student_result obj = new Student_result();
             this.Hide();
             obj.Show();
         }

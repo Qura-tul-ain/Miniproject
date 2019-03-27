@@ -40,3 +40,6 @@ C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Add_display_leve
 C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.start.resources
 C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.show_attendance.resources
 C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Clo_rubric_level.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Assessment.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Assess_component.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Student_result.resources
