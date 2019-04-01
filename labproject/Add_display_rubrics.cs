@@ -285,5 +285,13 @@ namespace labproject
             this.Hide();
             obj.Show();
         }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Assessment obj = new Assessment();
+            this.Hide();
+            obj.Show();
+
+        }
     }
 }

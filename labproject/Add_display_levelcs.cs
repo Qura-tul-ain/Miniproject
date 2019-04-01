@@ -93,7 +93,7 @@ namespace labproject
 
         private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Add_display_levelcs obj = new Add_display_levelcs();
+            student_form obj = new student_form();
             this.Hide();
             obj.Show();
         }
@@ -244,6 +244,13 @@ namespace labproject
         private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             Student_assessment obj = new Student_assessment();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Assessment obj = new Assessment();
             this.Hide();
             obj.Show();
         }

@@ -44,3 +44,5 @@ C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Assessment.resou
 C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Assess_component.resources
 C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.show_result.resources
 C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.Student_assessment.resources
+C:\Users\hp\Desktop\Miniproject\labproject\obj\Debug\labproject.assessmentWiseResult.resources
+C:\Users\hp\Desktop\Miniproject\labproject\bin\Debug\itextsharp.dll

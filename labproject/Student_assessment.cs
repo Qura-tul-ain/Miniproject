@@ -27,6 +27,7 @@ namespace labproject
         public static int RubricMeasu_id;
         public static int R_id;
         public static int clo_id;
+        public static int Assess_id;
         private void Student_result_Load(object sender, EventArgs e)
         {
             //binding of combobox1
@@ -42,15 +43,28 @@ namespace labproject
                 }
             }//end of combox binding
 
-            //binding combbox2
+            //binding combbox6
             using (SqlConnection con = new SqlConnection(constr))
             {//bind combox with all Assessment Component
-                using (SqlDataAdapter da = new SqlDataAdapter("SELECT Id,Name FROM AssessmentComponent ", con))
+                using (SqlDataAdapter da = new SqlDataAdapter("SELECT Id,Title FROM Assessment", con))
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
-                    comboBox2.DisplayMember = "Name";
-                    comboBox2.DataSource = dt;
+                    comboBox6.DisplayMember = "Title";
+                    comboBox6.DataSource = dt;
+
+                }
+            }//end of combox binding
+
+            //binding combbox5
+            using (SqlConnection con = new SqlConnection(constr))
+            {//bind combox with all Assessment Component
+                using (SqlDataAdapter da = new SqlDataAdapter("SELECT Id,Title FROM Assessment", con))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    comboBox5.DisplayMember = "Title";
+                    comboBox5.DataSource = dt;
 
                 }
             }//end of combox binding
@@ -98,25 +112,23 @@ namespace labproject
                 SqlCommand cmd = new SqlCommand(query, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
-                { 
-                       // MessageBox.Show(reader1[1].ToString());
-                        //binding of comboBox3
-                        using (SqlConnection con = new SqlConnection(constr))
-                        {//bind combox rubric level
-                            using (SqlDataAdapter da = new SqlDataAdapter("SELECT MeasurementLevel FROM RubricLevel where RubricLevel.RubricId='" + reader[2].ToString() + "'", con))
-                            {
+                {
+                    // MessageBox.Show(reader1[1].ToString());
+                    //binding of comboBox3
+                    using (SqlConnection con = new SqlConnection(constr))
+                    {//bind combox rubric level
+                        using (SqlDataAdapter da = new SqlDataAdapter("SELECT MeasurementLevel FROM RubricLevel where RubricLevel.RubricId='" + reader[2].ToString() + "'", con))
+                        {
 
-                                DataTable dt = new DataTable();
-                                da.Fill(dt);
-                                comboBox3.DisplayMember = "MeasurementLevel";
-                                comboBox3.DataSource = dt;
-                            }
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            comboBox3.DisplayMember = "MeasurementLevel";
+                            comboBox3.DataSource = dt;
                         }
                     }
-                    //end of combox binding
+                }
+                //end of combox binding
 
-
-                  
             }
         }
 
@@ -221,34 +233,78 @@ namespace labproject
             //bsource.DataSource = dbdataset;
             //dataGridView1.DataSource = bsource;
             //dataGridView1.Columns["ObtainedMarks"].DisplayIndex = 4;
-            float finalmarks;
-            int j ;
-            // caculate result
-            for (int i = 0; i < dataGridView1.Rows.Count-1; i++)
+            if (comboBox6.SelectedText == null)
             {
-                j = i;
-                DataGridViewRow rows = dataGridView1.Rows[i];
-                //  string  c = rows.Cells[1].Value.ToString();
-                string q = "Select * from AssessmentComponent where AssessmentComponent.Name='" + dataGridView1.Rows[j].Cells[1].Value.ToString() + "' ";
-                SqlCommand cmdd = new SqlCommand(q, conn);
-                SqlDataReader read = cmdd.ExecuteReader();
-                while (read.Read())
+
+                float finalmarks;
+                int j;
+                // caculate result
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
                 {
-                    R_id = Convert.ToInt32(read[2]);
+                    j = i;
+                    DataGridViewRow rows = dataGridView1.Rows[i];
+                    //  string  c = rows.Cells[1].Value.ToString();
+                    string q = "Select * from AssessmentComponent where AssessmentComponent.Name='" + dataGridView1.Rows[j].Cells[1].Value.ToString() + "' ";
+                    SqlCommand cmdd = new SqlCommand(q, conn);
+                    SqlDataReader read = cmdd.ExecuteReader();
+                    while (read.Read())
+                    {
+                        R_id = Convert.ToInt32(read[2]);
+                    }
+                    //
+                    string max = "SELECT MAX(MeasurementLevel) FROM RubricLevel where RubricLevel.RubricId='" + R_id + "'";
+                    SqlCommand cmd_max = new SqlCommand(max, conn);
+                    float maxfind = Convert.ToInt32(cmd_max.ExecuteScalar());
+                    float f_step = Convert.ToInt32(dataGridView1.Rows[j].Cells[3].Value);//measurement level
+                    float s_step = f_step / maxfind;
+                    float t_step = Convert.ToInt32(dataGridView1.Rows[j].Cells[4].Value);//Comp marks
+                    finalmarks = s_step * t_step;
+                    dataGridView1.Rows[j].Cells[0].Value = finalmarks;
+
+                    // j = i + 1;
+
                 }
-                //
-                string max = "SELECT MAX(MeasurementLevel) FROM RubricLevel where RubricLevel.RubricId='" + R_id + "'";
-                SqlCommand cmd_max = new SqlCommand(max, conn);
-                int maxfind = Convert.ToInt32(cmd_max.ExecuteScalar());
-                float f_step = Convert.ToInt32(dataGridView1.Rows[i].Cells[4].Value);//measurement level
-                float s_step = f_step / maxfind;
-                float t_step = Convert.ToInt32(dataGridView1.Rows[i].Cells[3].Value);//Comp marks
-                finalmarks = s_step * t_step;
-                dataGridView1.Rows[i].Cells[0].Value = finalmarks;
-               // j = i + 1;
-
             }
+            else
+            {
+                string assessment = comboBox6.SelectedText;
+                string AssessmentIdQuery = "SELECT * FROM Assessment where Assessment.Title='" + comboBox6.Text + "' ";
+                SqlCommand Assessmentt_cmd = new SqlCommand(AssessmentIdQuery, conn);
+                SqlDataReader reader3 = Assessmentt_cmd.ExecuteReader();
+                while (reader3.Read())
+                {
+                    Assess_id = Convert.ToInt32(reader3[0]);
+                }
 
+                float finalmarks;
+                int j;
+                // caculate result
+                for (int i = 0; i < dataGridView1.Rows.Count - 1; i++)
+                {
+                    j = i;
+                    DataGridViewRow rows = dataGridView1.Rows[i];
+                    //  string  c = rows.Cells[1].Value.ToString();
+                    string q = "Select * from AssessmentComponent where AssessmentComponent.Name='" + dataGridView1.Rows[j].Cells[1].Value.ToString() + "' and AssessmentComponent.AssessmentId='"+Assess_id+"'";
+                    SqlCommand cmdd = new SqlCommand(q, conn);
+                    SqlDataReader read = cmdd.ExecuteReader();
+                    while (read.Read())
+                    {
+                        R_id = Convert.ToInt32(read[2]);
+                    }
+                    //
+                    string max = "SELECT MAX(MeasurementLevel) FROM RubricLevel where RubricLevel.RubricId='" + R_id + "'";
+                    SqlCommand cmd_max = new SqlCommand(max, conn);
+                    float maxfind = Convert.ToInt32(cmd_max.ExecuteScalar());
+                    float f_step = Convert.ToInt32(dataGridView1.Rows[j].Cells[3].Value);//measurement level
+                    float s_step = f_step / maxfind;
+                    float t_step = Convert.ToInt64(dataGridView1.Rows[j].Cells[4].Value);//Comp marks
+                    finalmarks = s_step * t_step;
+                    dataGridView1.Rows[j].Cells[0].Value = finalmarks;
+
+                    // j = i + 1;
+
+                }
+            }
 
 
         }
@@ -296,7 +352,7 @@ namespace labproject
                 student_id = Convert.ToInt32(reader[0]);
             }
             // get student related data from studentResult
-            string componentidQuery = "SELECT * FROM StudentResult where Studentresult.StudentId='" + student_id + "' ";
+            string componentidQuery = "SELECT * FROM StudentResult where StudentResult.StudentId='" + student_id + "' ";
             SqlCommand componentid_cmd = new SqlCommand(componentidQuery, conn);
             SqlDataReader reader2 = componentid_cmd.ExecuteReader();
             while (reader2.Read())
@@ -304,21 +360,24 @@ namespace labproject
                 componentid = Convert.ToInt32(reader2[1]);
                 RubricMeasu_id = Convert.ToInt32(reader2[2]);
             }
+                //  show in data gridview
+                    SqlCommand SqlCommand;
+                    SqlDataAdapter adapter = new SqlDataAdapter();
 
-            //  show in data gridview
-            SqlCommand SqlCommand;
-            SqlDataAdapter adapter = new SqlDataAdapter();
+                    // string showdata = "SELECT Student.Id,AssessmentComponent.Name,Rubric.Details,StudentResult.RubricMeasurementId from StudentResult,student,AssessmentComponent,Rubric where StudentResult.StudentId=Student.Id and StudentResult.StudentId='" + student_id + "' ";
+                    string showdata = "Select AssessmentComponent.Name as Component,Rubric.Details as Rubric, RubricLevel.MeasurementLevel as RubricLevel ,AssessmentComponent.TotalMarks from StudentResult inner join Student on Student.Id=StudentResult.StudentId and Student.Id='" + student_id+"' left join AssessmentComponent on StudentResult.AssessmentComponentId=AssessmentComponent.Id  left join Rubric on Rubric.Id=AssessmentComponent.RubricId left join RubricLevel on RubricLevel.Id=StudentResult.RubricMeasurementId ";
+                    SqlCommand = new SqlCommand(showdata, conn);
+                    adapter.SelectCommand = new SqlCommand(showdata, conn);
+                    DataTable dbdataset = new DataTable();
+                    adapter.Fill(dbdataset);
+                    BindingSource bsource = new BindingSource();
+                    bsource.DataSource = dbdataset;
+                    dataGridView1.DataSource = bsource;
+                    dataGridView1.Columns["ObtainedMarks"].DisplayIndex = 4;
+                
+            
 
-            // string showdata = "SELECT Student.Id,AssessmentComponent.Name,Rubric.Details,StudentResult.RubricMeasurementId from StudentResult,student,AssessmentComponent,Rubric where StudentResult.StudentId=Student.Id and StudentResult.StudentId='" + student_id + "' ";
-            string showdata = "Select AssessmentComponent.Name as Component,Rubric.Details as Rubric,AssessmentComponent.TotalMarks, RubricLevel.MeasurementLevel as RubricLevel from StudentResult inner join Student on Student.Id=StudentResult.StudentId and Student.Id='" + student_id + "' left join AssessmentComponent on StudentResult.AssessmentComponentId=AssessmentComponent.Id and AssessmentComponent.Id= '" + componentid + "' left join Rubric on Rubric.Id=AssessmentComponent.RubricId left join RubricLevel on RubricLevel.Id=StudentResult.RubricMeasurementId and StudentResult.RubricMeasurementId='" + RubricMeasu_id + "' ";
-            SqlCommand = new SqlCommand(showdata, conn);
-            adapter.SelectCommand = new SqlCommand(showdata, conn);
-            DataTable dbdataset = new DataTable();
-            adapter.Fill(dbdataset);
-            BindingSource bsource = new BindingSource();
-            bsource.DataSource = dbdataset;
-            dataGridView1.DataSource = bsource;
-            dataGridView1.Columns["ObtainedMarks"].DisplayIndex = 4;
+          
         }
 
         private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -327,6 +386,97 @@ namespace labproject
             this.Hide();
             obj.Show();
                 
+        }
+
+        private void comboBox5_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            //ComboBox senderComboBox = (ComboBox)sender;
+            if (comboBox5.SelectedIndex > -1)
+            {
+                SqlConnection conn = new SqlConnection(constr);
+                conn.Open();
+                string txt = comboBox5.SelectedText;
+                string query = "SELECT * FROM Assessment where Assessment.Title ='" + txt + "' ";
+                SqlCommand cmd = new SqlCommand(query, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    // MessageBox.Show(reader1[1].ToString());
+                    //binding of comboBox3
+                    using (SqlConnection con = new SqlConnection(constr))
+                    {//bind combox rubric level
+                        using (SqlDataAdapter da = new SqlDataAdapter("SELECT Name FROM AssessmentComponent where AssessmentComponent.AssessmentId='" + reader[0].ToString() + "'", con))
+                        {
+
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            comboBox2.DisplayMember = "Name";
+                            comboBox2.DataSource = dt;
+                        }
+                    }
+                }
+                //end of combox binding
+            }
+        }
+
+    
+
+        private void comboBox6_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            // load data in datagridview
+            SqlConnection conn = new SqlConnection(constr);
+            //Open the connection to db
+            conn.Open();
+            //get student id
+            string regNo = comboBox4.SelectedText;
+            string StudentIdQuery = "SELECT * FROM Student where Student.RegistrationNumber='" + comboBox4.Text + "' ";
+            SqlCommand student_cmd = new SqlCommand(StudentIdQuery, conn);
+            SqlDataReader reader = student_cmd.ExecuteReader();
+            while (reader.Read())
+            {
+                student_id = Convert.ToInt32(reader[0]);
+            }
+            // get assessment id
+            string assessment = comboBox6.SelectedText;
+            string AssessmentIdQuery = "SELECT * FROM Assessment where Assessment.Title='" + comboBox6.Text + "' ";
+            SqlCommand Assessmentt_cmd = new SqlCommand(AssessmentIdQuery, conn);
+            SqlDataReader reader3 = Assessmentt_cmd.ExecuteReader();
+            while (reader3.Read())
+            {
+                Assess_id = Convert.ToInt32(reader3[0]);
+            }
+            // get student related data from studentResult
+            string componentidQuery = "SELECT * FROM StudentResult where StudentResult.StudentId='" + student_id + "' ";
+            SqlCommand componentid_cmd = new SqlCommand(componentidQuery, conn);
+            SqlDataReader reader2 = componentid_cmd.ExecuteReader();
+            while (reader2.Read())
+            {
+                componentid = Convert.ToInt32(reader2[1]);
+                RubricMeasu_id = Convert.ToInt32(reader2[2]);
+
+                //  show in data gridview
+                SqlCommand SqlCommand;
+                SqlDataAdapter adapter = new SqlDataAdapter();
+
+                // string showdata = "SELECT Student.Id,AssessmentComponent.Name,Rubric.Details,StudentResult.RubricMeasurementId from StudentResult,student,AssessmentComponent,Rubric where StudentResult.StudentId=Student.Id and StudentResult.StudentId='" + student_id + "' ";
+                string showdata = "Select AssessmentComponent.Name as Component, Rubric.Details as Rubric, RubricLevel.MeasurementLevel as RubricLevel ,AssessmentComponent.TotalMarks from StudentResult inner join Student on Student.Id=StudentResult.StudentId and Student.Id='" + student_id+"' left join AssessmentComponent on StudentResult.AssessmentComponentId=AssessmentComponent.Id inner join Assessment on AssessmentComponent.AssessmentId =Assessment.Id and Assessment.Id='" + Assess_id + "' left join Rubric on Rubric.Id=AssessmentComponent.RubricId left join RubricLevel on RubricLevel.Id=StudentResult.RubricMeasurementId ";
+                SqlCommand = new SqlCommand(showdata, conn);
+                adapter.SelectCommand = new SqlCommand(showdata, conn);
+                DataTable dbdataset = new DataTable();
+                adapter.Fill(dbdataset);
+                BindingSource bsource = new BindingSource();
+                bsource.DataSource = dbdataset;
+                dataGridView1.DataSource = bsource;
+                dataGridView1.Columns["ObtainedMarks"].DisplayIndex = 4;
+            }
+            
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            assessmentWiseResult obj = new assessmentWiseResult();
+            this.Hide();
+            obj.Show();
         }
     }
 }

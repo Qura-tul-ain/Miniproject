@@ -87,5 +87,12 @@ namespace labproject
             this.Hide();
             obj.Show();
         }
+
+        private void linkLabel11_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            assessmentWiseResult obj = new assessmentWiseResult();
+            this.Hide();
+            obj.Show();
+        }
     }
 }

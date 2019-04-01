@@ -135,5 +135,33 @@ namespace labproject
             this.Hide();
             obj.Show();
         }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            start obj = new start();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel7_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            show_attendance obj = new show_attendance();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Assessment obj = new Assessment();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel8_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Add_clo obj = new Add_clo();
+            this.Hide();
+            obj.Show();
+        }
     }
 }

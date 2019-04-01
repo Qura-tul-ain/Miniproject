@@ -111,14 +111,11 @@ namespace labproject
                         k = j + ii;
                         for (int i = 0; i < dataGridView1.Rows.Count; i++)
                         {
-
                             string delete_result = "DELETE  StudentResult WHERE EXISTS( SELECT * FROM AssessmentComponent WHERE AssessmentComponent.Id=StudentResult.AssessmentComponentId and AssessmentComponent.Id ='" + k + "')";
                             SqlCommand cmd = new SqlCommand(delete_result, conn);
                             SqlDataReader reader1 = cmd.ExecuteReader();
                         }
                     }
-
-                    
 
                     for (int i = 0; i < dataGridView1.Rows.Count; i++)
                     {
@@ -155,6 +152,8 @@ namespace labproject
             }//end of edit
             if (e.ColumnIndex == 2)//manage component
             {
+                DataGridViewRow rows = dataGridView1.Rows[e.RowIndex];
+                assessment_id = Convert.ToInt32(rows.Cells[3].Value);
                 Assess_component obj = new Assess_component();
                 this.Hide();
                 obj.Show();
@@ -189,6 +188,35 @@ namespace labproject
                 textBox2.Text = "";
                 textBox3.Text = "";
             }
+        }
+
+        private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            student_form obj = new student_form();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Attendance obj = new Attendance();
+            this.Hide();
+            obj.Show();
+
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            show_result obj = new show_result();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Student_assessment obj = new Student_assessment();
+            this.Hide();
+            obj.Show();
         }
     }
 }

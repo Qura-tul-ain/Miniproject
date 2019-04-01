@@ -18,6 +18,8 @@ namespace labproject
             InitializeComponent();
         }
         public static string name;
+        public static int totalMark;
+        public static int marks;
         public static int compid;
         public string constr = "Data Source = DESKTOP-G0K5DQK; Initial Catalog = ProjectB; Integrated Security = True;MultipleActiveResultSets=true;";
         private void label2_Click(object sender, EventArgs e)
@@ -72,35 +74,73 @@ namespace labproject
             dataGridView1.Columns["Delete"].DisplayIndex = 8;
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)// add button
         {
             SqlConnection conn = new SqlConnection(constr);
             conn.Open();
-            // get recently added id of  assessment ,which we need in AssessmentComponent
-            string q1 = "SELECT IDENT_CURRENT('Assessment')";
-            SqlCommand q = new SqlCommand(q1, conn);
-            int Assessmentid = Convert.ToInt32(q.ExecuteScalar());
+            // get added id of  assessment ,which we need in AssessmentComponent
+            int id = Assessment.assessment_id;
             DateTime dateCreate = DateTime.Now;
             DateTime dateUpdate = DateTime.Now;
             string c = comboBox1.Text;
-            //serach for RubricId(id of rubric seleted in combobox)
-            string search = "SELECT * FROM Rubric where Rubric.Details='" + comboBox1.Text + "' ";
-            SqlCommand cmnd = new SqlCommand(search, conn);
-            SqlDataReader reader = cmnd.ExecuteReader();
-            while(reader.Read())
-            {
-                int rubricId = Convert.ToInt32(reader[0]);
-                //insert component in table
-                string sql = "INSERT INTO AssessmentComponent(Name,RubricId,TotalMarks,DateCreated,DateUpdated,AssessmentId) VALUES ('" + textBox1.Text + "','" + rubricId + "','" + textBox2.Text + "','" + dateCreate + "','" + dateUpdate + "','" + Assessmentid + "')";
-                SqlCommand insert = new SqlCommand(sql, conn);
-                insert.ExecuteNonQuery();
-                MessageBox.Show("Successfully Inserted Component");
-                show();
-                textBox1.Text = "";
-                textBox2.Text = "";
-                comboBox1.Text= "";
+            string querymarks = "Select TotalMarks from Assessment where Assessment.Id='" + id + "'";
+            SqlCommand cd = new SqlCommand(querymarks, conn);
+            marks = Convert.ToInt32(cd.ExecuteScalar());
+
+            int componentMark = Convert.ToInt32(textBox2.Text);
+            string marksCal = "Select AssessmentComponent.TotalMarks,Assessment.TotalMarks from AssessmentComponent,Assessment where Assessment.Id=AssessmentComponent.AssessmentId and Assessment.Id='" + id + "'";
+            SqlCommand mark= new SqlCommand(marksCal, conn);
+            SqlDataReader reader4 = mark.ExecuteReader();
+            while(reader4.Read())
+                {
+                totalMark = componentMark + Convert.ToInt32(reader4[0]);
             }
-         
+
+            if(totalMark <marks)
+            {
+              
+                //serach for RubricId(id of rubric seleted in combobox)
+                string search = "SELECT * FROM Rubric where Rubric.Details='" + comboBox1.Text + "' ";
+                SqlCommand cmnd = new SqlCommand(search, conn);
+                SqlDataReader reader = cmnd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int rubricId = Convert.ToInt32(reader[0]);
+                    //insert component in table
+                    string sql = "INSERT INTO AssessmentComponent(Name,RubricId,TotalMarks,DateCreated,DateUpdated,AssessmentId) VALUES ('" + textBox1.Text + "','" + rubricId + "','" + textBox2.Text + "','" + dateCreate + "','" + dateUpdate + "','" + id + "')";
+                    SqlCommand insert = new SqlCommand(sql, conn);
+                    insert.ExecuteNonQuery();
+                    MessageBox.Show("Successfully Inserted Component,Add new Component");
+                    show();
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    comboBox1.Text = "";
+                
+                }
+            }
+            else if (totalMark >marks)
+                    {
+                MessageBox.Show("Components Marks greater than Total mark");
+            }
+            else{
+                //serach for RubricId(id of rubric seleted in combobox)
+                string search = "SELECT * FROM Rubric where Rubric.Details='" + comboBox1.Text + "' ";
+                SqlCommand cmnd = new SqlCommand(search, conn);
+                SqlDataReader reader = cmnd.ExecuteReader();
+                while (reader.Read())
+                {
+                    int rubricId = Convert.ToInt32(reader[0]);
+                    //insert component in table
+                    string sql = "INSERT INTO AssessmentComponent(Name,RubricId,TotalMarks,DateCreated,DateUpdated,AssessmentId) VALUES ('" + textBox1.Text + "','" + rubricId + "','" + textBox2.Text + "','" + dateCreate + "','" + dateUpdate + "','" + id + "')";
+                    SqlCommand insert = new SqlCommand(sql, conn);
+                    insert.ExecuteNonQuery();
+                    MessageBox.Show("Successfully Inserted Component");
+                    show();
+                    textBox1.Text = "";
+                    textBox2.Text = "";
+                    comboBox1.Text = "";
+                }
+            }
         }
 
 
@@ -228,6 +268,35 @@ namespace labproject
                     comboBox1.Text = "";
                 }
             }
+        }
+
+        private void linkLabel6_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Add_clo obj = new Add_clo();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel3_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Student_assessment obj = new Student_assessment();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel4_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            show_result obj = new show_result();
+            this.Hide();
+            obj.Show();
+        }
+
+        private void linkLabel5_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            student_form obj = new student_form();
+            this.Hide();
+            obj.Show();
+
         }
     }
 }
