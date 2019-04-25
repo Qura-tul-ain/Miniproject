@@ -276,5 +276,20 @@ namespace labproject
             this.Hide();
             obj.Show();
         }
+
+        private void textBox4_Validating(object sender, CancelEventArgs e)
+        {
+            System.Text.RegularExpressions.Regex rEmail = new System.Text.RegularExpressions.Regex(@"^[a-zA-Z][\w\.-]*[a-zA-Z0-9]@[a-zA-Z0-9][\w\.-]*[a-zA-Z0-9]\.[a-zA-Z][a-zA-Z\.]*[a-zA-Z]$");
+
+            if (textBox4.Text.Length > 0 && textBox4.Text.Trim().Length != 0)
+            {
+                if (!rEmail.IsMatch(textBox4.Text.Trim()))
+                {
+                    MessageBox.Show("Please check your email id");
+                    textBox4.SelectAll();
+                    e.Cancel = true;
+                }
+            }
+        }
     }
 }

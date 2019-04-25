@@ -161,7 +161,7 @@ namespace labproject
             }
             else
             {
-                MessageBox.Show("Click on right button");
+          
             }
 
 
